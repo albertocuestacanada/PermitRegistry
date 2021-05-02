@@ -11,16 +11,15 @@ interface IERC2612 {
     /// @dev Sets `amount` as the allowance of `spender` over `owner`'s tokens, given `owner`'s signed approval.
     function permit(address owner, address spender, uint256 amount, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external;
 
-    /// @dev Returns the current ERC2612 nonce for `owner`.
+    /// @dev Returns the current permit nonce for `owner`.
     function nonces(address owner) external view returns (uint256);
+
+    /// @dev Return the ERC712 domain separator
+    function DOMAIN_SEPARATOR() external view returns (bytes32);
 }
 
 interface DaiAbstract {
-    /// @dev Returns the remaining number of tokens that `spender` will be allowed to spend on behalf of `owner`.
-    function allowance(address, address) external view returns (uint256);
-
-    /// @dev Returns the current permit nonce for `owner`.
-    function nonces(address) external view returns (uint256);
+    // `nonces` and `DOMAIN_SEPARATOR()` are identical to IERC2612.
 
     /// @dev Sets MAX as the allowance of `spender` over `owner`'s tokens, given `owner`'s signed approval.
     function permit(address, address, uint256, uint256, bool, uint8, bytes32, bytes32) external;
@@ -31,11 +30,6 @@ interface IERC1271 {
   /// @param hash      Hash of the data to be signed
   /// @param signature Signature byte array associated with _data
   function isValidSignature(bytes32 hash, bytes memory signature) external view returns (bytes4 magicValue);
-}
-
-interface IERC712 {
-    /// @dev Return the ERC712 domain separator
-    function DOMAIN_SEPARATOR() external view returns (bytes32);
 }
 
 
@@ -75,7 +69,7 @@ contract PermitRegistry {
             )
         );
 
-        require (domain == IERC712(token).DOMAIN_SEPARATOR(), "Mismatched domains");
+        require (domain == IERC2612(token).DOMAIN_SEPARATOR(), "Mismatched domains");
         names[token] = name;
         versions[token] = version;
         domains[token] = domain;
@@ -115,10 +109,10 @@ contract PermitRegistry {
     function registerDaiPermit(address token, uint8 v, bytes32 r, bytes32 s)
         private
     {
-        uint256 nonce = DaiAbstract(token).nonces(msg.sender);
+        uint256 nonce = IERC2612(token).nonces(msg.sender);
         DaiAbstract(token).permit(msg.sender, address(this), nonce, MAX, true, v, r, s);
         require(
-            DaiAbstract(token).allowance(msg.sender, address(this)) == MAX,
+            IERC20(token).allowance(msg.sender, address(this)) == MAX,
             "No DAI permit"
         );
         permits[token] &= DAI;
