@@ -2334,14 +2334,6 @@
   resolved "https://registry.yarnpkg.com/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz#e77a97fbd345b76d83245edcd17d393b1b41fb31"
   integrity sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==
 
-"@yield-protocol/utils-v2@^2.2.1":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@yield-protocol/utils-v2/-/utils-v2-2.2.2.tgz#4491efd241d2aa8c40a9c655e9782490412c3ad7"
-  integrity sha512-IEUpqJyWglEJw2BoYOixMEWC8B9xbD3og9vGVtLMo9mjB2+TMsXAe3yUYZe+yv3E+BWW+i5rjLrUG3lingG72A==
-  dependencies:
-    ethereumjs-util "^7.0.8"
-    ethers "^5.0.7"
-
 abab@^2.0.0:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.5.tgz#c0b678fb32d60fc1219c784d6a826fe385aeb79a"
@@ -4854,11 +4846,6 @@ drbg.js@^1.0.1:
     create-hash "^1.1.2"
     create-hmac "^1.1.4"
 
-dss-interfaces@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/dss-interfaces/-/dss-interfaces-0.1.1.tgz#2ed72af0f206b5a4a6968262d42ceeefe1af9a30"
-  integrity sha512-SaTUptK+0jHsgaywKLDZBZi5L6d154b62ujFlECmY7bWPLp+7JmoK502xfjh8wtkOI5T3a7vhnEYTJ4m36uNhQ==
-
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -5897,7 +5884,7 @@ ethers@^4.0.32, ethers@^4.0.40:
     uuid "2.0.1"
     xmlhttprequest "1.8.0"
 
-ethers@^5.0.0, ethers@^5.0.1, ethers@^5.0.2, ethers@^5.0.31, ethers@^5.0.7:
+ethers@^5.0.0, ethers@^5.0.1, ethers@^5.0.2, ethers@^5.0.31:
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.1.4.tgz#8ae973705ed962f8f41dc59693704002a38dd18b"
   integrity sha512-EAPQ/fgGRu0PoR/VNFnHTMOtG/IZ0AItdW55C9T8ffmVu0rnyllZL404eBF66elJehOLz2kxnUrhXpE7TCpW7g==

@@ -2,10 +2,29 @@
 
 pragma solidity >= 0.8.0;
 
-import "@yield-protocol/utils-v2/contracts/token/IERC20.sol";
-import "@yield-protocol/utils-v2/contracts/token/IERC2612.sol";
-import "dss-interfaces/src/dss/DaiAbstract.sol";
+interface IERC20 {
+    /// @dev Returns the remaining number of tokens that `spender` will be allowed to spend on behalf of `owner`.
+    function allowance(address owner, address spender) external view returns (uint256);
+}
 
+interface IERC2612 {
+    /// @dev Sets `amount` as the allowance of `spender` over `owner`'s tokens, given `owner`'s signed approval.
+    function permit(address owner, address spender, uint256 amount, uint256 deadline, uint8 v, bytes32 r, bytes32 s) external;
+
+    /// @dev Returns the current ERC2612 nonce for `owner`.
+    function nonces(address owner) external view returns (uint256);
+}
+
+interface DaiAbstract {
+    /// @dev Returns the remaining number of tokens that `spender` will be allowed to spend on behalf of `owner`.
+    function allowance(address, address) external view returns (uint256);
+
+    /// @dev Returns the current permit nonce for `owner`.
+    function nonces(address) external view returns (uint256);
+
+    /// @dev Sets MAX as the allowance of `spender` over `owner`'s tokens, given `owner`'s signed approval.
+    function permit(address, address, uint256, uint256, bool, uint8, bytes32, bytes32) external;
+}
 
 interface IERC1271 {
   /// @dev Should return whether the signature provided is valid for the provided data
